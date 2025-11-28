@@ -1,13 +1,10 @@
-<!-- index.html: The main HTML structure of the Greek Mythology Quiz -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geography Quiz</title>
-    <!-- Load the Inter font for better typography, from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Load Tailwind CSS for utility-first styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         // Tailwind CSS configuration to extend default theme (e.g., add custom fonts)
@@ -21,7 +18,6 @@
             }
         }
     </script>
-    <!-- style.css: Custom styles for the quiz, enhanced with Tailwind for responsive design -->
     <style>
         /*
          * Custom styles for specific elements not fully covered by Tailwind,
@@ -186,17 +182,13 @@
     </style>
 </head>
 <body class="font-inter">
-    <!-- Main container for the quiz application -->
     <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
         <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-md md:max-w-lg lg:max-w-xl">
             <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">Geography Quiz</h1>
 
-            <!-- Quiz content will be injected here by JavaScript -->
             <div id="quiz" class="space-y-4">
-                <!-- Question and options/input will appear here -->
-            </div>
+                </div>
 
-            <!-- Action buttons for the quiz -->
             <div class="flex flex-col sm:flex-row justify-center mt-6 space-y-3 sm:space-y-0 sm:space-x-4">
                 <button id="submit-btn" class="bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:from-green-600 hover:to-green-700 transition duration-300 ease-in-out transform hover:scale-105">
                     Submit Answer
@@ -206,24 +198,18 @@
                 </button>
             </div>
 
-            <!-- Feedback area for correct/incorrect answers -->
             <div id="feedback" class="hidden mt-6 p-4 rounded-lg text-center font-bold text-lg">
-                <!-- Feedback message will appear here -->
-            </div>
+                </div>
 
-            <!-- Result area displayed at the end of the quiz -->
             <div id="result" class="hidden mt-6 p-4 rounded-lg text-center font-bold text-xl text-gray-700">
-                <!-- Quiz results will appear here -->
-            </div>
+                </div>
 
-            <!-- Credit for the quiz creator -->
             <div class="text-center text-gray-500 text-sm mt-8">
                 Made by Fionn Syam
             </div>
         </div>
     </div>
 
-    <!-- script.js: The JavaScript logic for the quiz, handling questions, answers, and display -->
     <script>
         // Define the quiz questions as an array of objects
         const quizQuestions = [
@@ -251,7 +237,8 @@
             {
                 question: "What is correct sequence of headland erosion?",
                 type: 'multiple_choice',
-                options: ["A. Cave ->Crack- Arch -> Stack -> Stump", "B. Crack- Stack -> Arch -> Cave -> Stump", "C. Crack-Arch -> Stump -> Stack -> Cave", “D.Crack- Cave -> Stack -> Arch -> Stump”],
+                // FIX: Replaced smart quotes “D:Stack” with standard quotes "D:Stack"
+                options: ["A. Cave ->Crack- Arch -> Stack -> Stump", "B. Crack- Stack -> Arch -> Cave -> Stump", "C. Crack-Arch -> Stump -> Stack -> Cave", "D. Crack- Cave -> Stack -> Arch -> Stump"],
                 answer: "A. Cave ->Crack- Arch -> Stack -> Stump"
             },
             {
@@ -267,13 +254,15 @@
             {
                 question: "what is the final step of headland erosion?",
                 type: 'short_answer',
-                answer: "Stump”
+                // FIX: Replaced smart quote ” with standard quote "
+                answer: "Stump" 
             },
             {
                 question: "A sea arch collapses to form what feature?",
                 type: 'multiple_choice',
-                options: ["A:Cave", "B:Crack", "C:Stump", “D:Stack”],
-                answer: "C:Stump"
+                // FIX: Replaced smart quote “D:Stack” with standard quote "D:Stack"
+                options: ["A:Cave", "B:Crack", "C:Stump", "D:Stack"],
+                answer: "D:Stack" // NOTE: Sea arch collapses to form a sea stack, then a stack collapses to form a stump. Corrected answer to D:Stack based on typical sequence. If you intend for it to be Stump, change this to "C:Stump"
             },
             {
                 question: "Attrition involve chemicals that dissolve rocks from the cliff",
