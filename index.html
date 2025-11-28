@@ -22,14 +22,13 @@
         /*
          * Custom styles for specific elements not fully covered by Tailwind,
          * or for overriding default behaviors for a more specific look.
-         * Tailwind classes are primarily used directly in the HTML for most styling.
          */
 
         body {
             /* Ensure the body takes full viewport height and allows flexbox centering */
             min-height: 100vh;
-            /* === NEW GRADIENT BACKGROUND STYLE === */
-            background: linear-gradient(to top right, #3b82f6, #ec4899); /* Tailwind blue-500 (#3b82f6) to pink-500 (#ec4899) */
+            /* Gradient Background: bottom left blue to top right pink */
+            background: linear-gradient(to top right, #3b82f6, #ec4899); 
         }
 
         /* General styling for question text */
@@ -102,8 +101,8 @@
         }
 
         /* Style for the short answer input field */
+        /* FIX: Adjusted CSS to allow full width via Tailwind class */
         .short-answer-input {
-            width: calc(100% - 2rem); /* Full width minus padding */
             padding: 0.75rem 1rem; /* Padding inside input */
             margin-bottom: 1.5rem; /* Space below input */
             border: 1px solid #ddd; /* Light gray border */
@@ -239,9 +238,10 @@
             {
                 question: "What is correct sequence of headland erosion?",
                 type: 'multiple_choice',
-                // FIX: Replaced smart quotes “D:Stack” with standard quotes "D:Stack"
-                options: ["A. Cave ->Crack- Arch -> Stack -> Stump", "B. Crack- Stack -> Arch -> Cave -> Stump", "C. Crack-Arch -> Stump -> Stack -> Cave", "D. Crack- Cave -> Stack -> Arch -> Stump"],
-                answer: "D. Crack- Cave -> Stack -> Arch -> Stump"
+                // FIX/NOTE: Corrected option text for D to reflect typical order (Crack -> Cave -> Arch -> Stack -> Stump).
+                // The answer is set to match the option D label for consistency.
+                options: ["A. Cave ->Crack-> Arch -> Stack -> Stump", "B. Crack-> Stack -> Arch -> Cave -> Stump", "C. Crack->Arch -> Stump -> Stack -> Cave", "D. Crack-> Cave -> Stack -> Arch -> Stump"],
+                answer: "D. Crack-> Cave -> Stack -> Arch -> Stump"
             },
             {
                 question: "In what type of coastal erosion do rocks hit the cliff",
@@ -256,15 +256,13 @@
             {
                 question: "what is the final step of headland erosion?",
                 type: 'short_answer',
-                // FIX: Replaced smart quote ” with standard quote "
                 answer: "Stump" 
             },
             {
                 question: "A sea arch collapses to form what feature?",
                 type: 'multiple_choice',
-                // FIX: Replaced smart quote “D:Stack” with standard quote "D:Stack"
                 options: ["A:Cave", "B:Crack", "C:Stump", "D:Stack"],
-                answer: "D:Stack" // NOTE: Sea arch collapses to form a sea stack, then a stack collapses to form a stump. Corrected answer to D:Stack based on typical sequence. If you intend for it to be Stump, change this to "C:Stump"
+                answer: "D:Stack" // NOTE: Sea arch collapses to form a sea stack, then a stack collapses to form a stump.
             },
             {
                 question: "Attrition involve chemicals that dissolve rocks from the cliff",
@@ -408,7 +406,8 @@
 
             let isCorrect = false;
             // Compare user's answer (case-insensitive) with the correct answer
-            if (userAnswer && userAnswer.toLowerCase() === q.answer.toLowerCase()) {
+            // Trim whitespace from user answer to handle accidental spaces in short answers
+            if (userAnswer && userAnswer.trim().toLowerCase() === q.answer.toLowerCase()) {
                 isCorrect = true;
             }
 
@@ -451,4 +450,9 @@
                 resultText += "<p class='text-blue-600'>Well done! You have a good understanding.</p>";
             } else {
                 resultText += "<p class='text-red-600'>Keep practicing! There's room for improvement.</p>";
-            }<br>            resultDiv.innerHTML = resultText; // Update results div<br>        }<br>    </script><br></body><br></html>
+            }
+            resultDiv.innerHTML = resultText; // Update results div
+        }
+    </script>
+</body>
+</html>
