@@ -1,11 +1,27 @@
+<!-- index.html: The main HTML structure of the Greek Mythology Quiz -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geography Quiz</title>
+    <title>Viking/Celtic Quiz</title>
     <!-- Load the Inter font for better typography, from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Tailwind CSS configuration to extend default theme (e.g., add custom fonts)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'], // Define 'Inter' font family
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- style.css: Custom styles for the quiz, enhanced with Tailwind for responsive design -->
     <style>
         /*
          * Custom styles for specific elements not fully covered by Tailwind,
@@ -16,12 +32,6 @@
         body {
             /* Ensure the body takes full viewport height and allows flexbox centering */
             min-height: 100vh;
-        }
-
-        /* Styles for the quiz container, applied via class in HTML */
-        .quiz-container {
-            /* These properties are largely managed by Tailwind classes in index.html */
-            /* For example: bg-white, rounded-xl, shadow-lg, p-6, etc. */
         }
 
         /* General styling for question text */
@@ -111,15 +121,6 @@
             outline: none; /* Remove default outline */
         }
 
-        /* Styles for buttons, largely managed by Tailwind classes in HTML */
-        button {
-            /* Example: bg-gradient-to-r, from-green-500, text-white, py-3, etc. */
-        }
-
-        button:hover {
-            /* Example: hover:from-green-600, transform, hover:scale-105 */
-        }
-
         /* Utility class to hide elements */
         .hidden {
             display: none !important; /* Force hide */
@@ -188,7 +189,7 @@
     <!-- Main container for the quiz application -->
     <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
         <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-md md:max-w-lg lg:max-w-xl">
-            <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">Geography Quiz</h1>
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">Viking/Celtic Quiz</h1>
 
             <!-- Quiz content will be injected here by JavaScript -->
             <div id="quiz" class="space-y-4">
@@ -217,24 +218,12 @@
 
             <!-- Credit for the quiz creator -->
             <div class="text-center text-gray-500 text-sm mt-8">
-                Made by Fionn Syam
+                Made by Fionn Syam for the use of Benjamin Wigley
             </div>
         </div>
     </div>
 
-    <!-- Load Tailwind CSS for utility-first styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
+    <!-- script.js: The JavaScript logic for the quiz, handling questions, answers, and display -->
     <script>
         // script.js: The JavaScript logic for the quiz, handling questions, answers, and display
         // Define the quiz questions as an array of objects
@@ -313,25 +302,6 @@
 
         // Event listener to start the quiz when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', startGame);
-
-        // Add event listener for keyboard presses to handle Enter key for both submit and next
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                // If submit button is visible, click it
-                if (!submitButton.classList.contains('hidden')) {
-                    submitButton.click();
-                } 
-                // If next button is visible (and submit is hidden), click it
-                else if (!nextButton.classList.contains('hidden')) {
-                    nextButton.click();
-                }
-                // Prevent default form submission if an input field is focused
-                if (event.target.tagName === 'INPUT') {
-                    event.preventDefault();
-                }
-            }
-        });
-
 
         /**
          * Initializes the quiz: shuffles questions, resets score and index,
@@ -416,10 +386,6 @@
                     `;
                 }
                 quizDiv.innerHTML = questionHtml; // Update the quiz container with the new question
-                // For short answer, focus the input field for immediate typing
-                if (q.type === 'short_answer') {
-                    document.getElementById('short-answer').focus();
-                }
             } else {
                 // If no more questions, show the final results
                 showResults();
@@ -430,7 +396,7 @@
         submitButton.addEventListener('click', checkAnswer);
         nextButton.addEventListener('click', () => {
             currentQuestionIndex++; // Move to the next question
-            displayQuestion();      // Display the next question
+            displayQuestion();     // Display the next question
         });
 
         /**
@@ -445,22 +411,8 @@
             if (q.type === 'multiple_choice' || q.type === 'true_false') {
                 const selectedOption = quizDiv.querySelector('input[name="answer"]:checked');
                 userAnswer = selectedOption ? selectedOption.value : null; // Get value or null if nothing selected
-                if (!selectedOption) {
-                    // Provide feedback if no option is selected for multiple choice/true-false
-                    feedbackDiv.classList.remove('hidden');
-                    feedbackDiv.textContent = "Please select an answer.";
-                    feedbackDiv.className = 'incorrect mt-6 p-4 rounded-lg text-center font-bold text-lg';
-                    return; // Stop function execution if no answer is selected
-                }
             } else if (q.type === 'short_answer') {
                 userAnswer = quizDiv.querySelector('#short-answer').value.trim(); // Get trimmed text input
-                if (!userAnswer) {
-                    // Provide feedback if short answer is empty
-                    feedbackDiv.classList.remove('hidden');
-                    feedbackDiv.textContent = "Please type your answer.";
-                    feedbackDiv.className = 'incorrect mt-6 p-4 rounded-lg text-center font-bold text-lg';
-                    return; // Stop function execution if no answer is provided
-                }
             }
 
             let isCorrect = false;
