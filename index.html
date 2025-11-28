@@ -28,6 +28,8 @@
         body {
             /* Ensure the body takes full viewport height and allows flexbox centering */
             min-height: 100vh;
+            /* === NEW GRADIENT BACKGROUND STYLE === */
+            background: linear-gradient(to top right, #3b82f6, #ec4899); /* Tailwind blue-500 (#3b82f6) to pink-500 (#ec4899) */
         }
 
         /* General styling for question text */
@@ -182,7 +184,7 @@
     </style>
 </head>
 <body class="font-inter">
-    <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div class="min-h-screen flex items-center justify-center p-4">
         <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-md md:max-w-lg lg:max-w-xl">
             <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">Geography Quiz</h1>
 
@@ -449,9 +451,4 @@
                 resultText += "<p class='text-blue-600'>Well done! You have a good understanding.</p>";
             } else {
                 resultText += "<p class='text-red-600'>Keep practicing! There's room for improvement.</p>";
-            }
-            resultDiv.innerHTML = resultText; // Update results div
-        }
-    </script>
-</body>
-</html>
+            }<br>            resultDiv.innerHTML = resultText; // Update results div<br>        }<br>    </script><br></body><br></html>
