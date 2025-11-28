@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viking/Celtic Quiz</title>
+    <title>Geography Quiz</title>
     <!-- Load the Inter font for better typography, from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Load Tailwind CSS for utility-first styling -->
@@ -189,7 +189,7 @@
     <!-- Main container for the quiz application -->
     <div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
         <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-full max-w-md md:max-w-lg lg:max-w-xl">
-            <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">Viking/Celtic Quiz</h1>
+            <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">Geography Quiz</h1>
 
             <!-- Quiz content will be injected here by JavaScript -->
             <div id="quiz" class="space-y-4">
@@ -218,14 +218,13 @@
 
             <!-- Credit for the quiz creator -->
             <div class="text-center text-gray-500 text-sm mt-8">
-                Made by Fionn Syam for the use of Benjamin Wigley
+                Made by Fionn Syam
             </div>
         </div>
     </div>
 
     <!-- script.js: The JavaScript logic for the quiz, handling questions, answers, and display -->
     <script>
-        // script.js: The JavaScript logic for the quiz, handling questions, answers, and display
         // Define the quiz questions as an array of objects
         const quizQuestions = [
             {
@@ -287,6 +286,7 @@
                 answer: "False"
             }
         ];
+
 
         // Initialize quiz state variables
         let currentQuestionIndex = 0; // Tracks the current question being displayed
@@ -466,4 +466,3 @@
     </script>
 </body>
 </html>
-
